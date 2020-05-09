@@ -6,14 +6,6 @@ from gensim.models.keyedvectors import KeyedVectors
 def main():
     choice = ""
     try:
-        f = open('word2vec_twitter_tokens.txt')
-        f.close()
-    except FileNotFoundError:
-        print("Pre-loading w2v model! Will take 15-20 mins...")
-        model = KeyedVectors.load_word2vec_format('word2vec_twitter_tokens.bin', binary=True, unicode_errors='ignore')
-        model.save_word2vec_format('word2vec_twitter_tokens.txt', binary=False)
-
-    try:
         f = open('word2vec_twitter_tokens.bin')
         f.close()
         f = open('trainingdata-all-annotations.txt')
@@ -23,6 +15,14 @@ def main():
     except FileNotFoundError:
         print("Unable to find the datasets or the word2vec bin file in the directory. Please check if they exist.")
         return
+    
+    try:
+        f = open('word2vec_twitter_tokens.txt')
+        f.close()
+    except FileNotFoundError:
+        print("Pre-loading w2v model! Will take 15-20 mins...")
+        model = KeyedVectors.load_word2vec_format('word2vec_twitter_tokens.bin', binary=True, unicode_errors='ignore')
+        model.save_word2vec_format('word2vec_twitter_tokens.txt', binary=False)
 
     models = ['Naive Bayes', 'Logistic Regression', 'Support Vector Machine']
 
