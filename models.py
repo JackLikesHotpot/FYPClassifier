@@ -17,7 +17,8 @@ def runBayes(X_train, trainStances, X_test):
 def evalBayes(predictions, testStances, features):
     print("Naive Bayes Model")
     printOptions(features)
-    print("F1 Score / Accuracy: ", metrics.f1_score(testStances, predictions, average='micro'))
+    print("Micro F1-Score: ", metrics.f1_score(testStances, predictions, average='micro'))
+    print("Macro F1-score: ", metrics.f1_score(testStances, predictions, average='macro'))
     print("Number of instances correctly determined: ",
           metrics.accuracy_score(testStances, predictions, normalize=False))
 
@@ -49,6 +50,7 @@ def runSVM(X_train, trainStances, X_test):
 def evalSVM(predictions, testStances, features):
     print("Support Vector Machine")
     printOptions(features)
-    print("F1 Score / Accuracy: ", metrics.f1_score(testStances, predictions, average='micro'))
+    print("Micro F1-score: ", metrics.f1_score(testStances, predictions, average='micro'))
+    print("Macro F1-score: ", metrics.f1_score(testStances, predictions, average='macro'))
     print("Number of instances correctly determined: ",
           metrics.accuracy_score(testStances, predictions, normalize=False))
