@@ -29,6 +29,8 @@ The training/testing results for all combinations of models will be outputted af
 
 Training/validation results are automatically outputted, while with testing results, you can press Enter after every post of class distribution to go to the next feature.
 
+**NOTE:** Output works fine on Windows' Command Prompt, but not with Git Bash.
+
 # References
 
 Mohammad, S., Kiritchenko, S., Sobhani, P., Zhu, X. and Cherry, C. (2019). SemEval-2016 Task 6: Proceedings of the International Workshop on Semantic Evaluation (SemEval-2016), San Diego, California, 2016.
