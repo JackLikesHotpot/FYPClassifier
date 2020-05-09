@@ -33,11 +33,12 @@ def printDetails(title, comments, predictions, model, features):
         print(comments[i], predictions[i])
 
     print('\n')
+    print(model)
+    printOptions(features)
+    print('\n')
     print("FAVOUR: " + str(favorCount))
     print("NEUTRAL: " + str(neutralCount))
     print("AGAINST: " + str(againstCount))
-    print(model)
-    printOptions(features)
 
 def runClassifiers(modelChoice):
 
