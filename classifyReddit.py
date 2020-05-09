@@ -70,11 +70,14 @@ def runClassifiers(modelChoice):
         if modelChoice == '1':
             predictions = runBayes(X_train, trainStances, X_test)  # train the classifiers and the test with data
             printDetails(title, comments, predictions, "NAIVE BAYES", features)
+            input()
 
         elif modelChoice == '2':
             predictions = runLogReg(X_train, trainStances, X_test)
             printDetails(title, comments, predictions, "LOGISTIC REGRESSION", features)
+            input()
 
         elif modelChoice == '3':
             predictions = runSVM(X_train, trainStances, X_test)
             printDetails(title, comments, predictions, "SUPPORT VECTOR MACHINE", features)
+            input()
