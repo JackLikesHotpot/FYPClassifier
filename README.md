@@ -24,4 +24,11 @@ When prompted, you can choose a model with numbers:
 > 3 (Support Vector Machine)
 
 The training/testing results for all combinations of models will be outputted after a while.
+
 Training/validation results are automatically outputted, while with testing results, you can press Enter after every post of class distribution to go to the next feature.
+
+# References
+
+Mohammad, S., Kiritchenko, S., Sobhani, P., Zhu, X. and Cherry, C. (2019). SemEval-2016 Task 6: Proceedings of the International Workshop on Semantic Evaluation (SemEval-2016), San Diego, California, 2016.
+
+Godin, F. (2019). Improving And Interpreting Neural Networks For Word-Level Prediction Tasks In Natural Language Processing. 1st ed. Ghent: UGent - Faculty of Engineering and Architecture.
