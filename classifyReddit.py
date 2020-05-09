@@ -19,7 +19,6 @@ def printDetails(title, comments, predictions, model, features):
     print(title)
     print('--------------------------------------------------------------------------')
     print("Total: " + str(len(comments)) + " comments. \n")
-    printOptions(features)
 
     for i in range(len(comments)):
 
@@ -37,7 +36,8 @@ def printDetails(title, comments, predictions, model, features):
     print("FAVOUR: " + str(favorCount))
     print("NEUTRAL: " + str(neutralCount))
     print("AGAINST: " + str(againstCount))
-
+    print(model)
+    printOptions(features)
 
 def runClassifiers(modelChoice):
 
