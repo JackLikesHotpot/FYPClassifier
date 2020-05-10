@@ -1,5 +1,5 @@
 def readFile(file):
-    tweetList = []
+    tweetList = []                                              # open the datasets, divide by tab and add to tweetList
 
     with open(file) as f:
         for line in f:
@@ -12,7 +12,7 @@ def readFile(file):
 def breakFileIntoStrings(file):  # divides file of strings into individual words
     return removeNestings(readFile(file))
 
-def breakArray(arr):
+def breakArray(arr):                                            # break and array into separate words
     arrayString = []
     for string in arr:
         words = string.split(' ')
@@ -20,10 +20,10 @@ def breakArray(arr):
             arrayString.append(word)
     return arrayString
 
-def breakArrayIntoStrings(arr):
+def breakArrayIntoStrings(arr):                                 # breaks and array into strings
     return removeNestings(breakArray(arr))
 
-def removeNestings(lis):
+def removeNestings(lis):                                        # removes the nestings on strings
     tweets = []
 
     for i in range(len(lis)):
