@@ -1,3 +1,7 @@
+# Testing phase.
+# With a given model go through the following:
+# Model name, features, Reddit submission title, comments, their stance, distribution of stances, and features used.
+
 from generateSubmission import generateSub
 from loadGodinModel import loadGodin
 from options import processRedditComments, processData
@@ -30,19 +34,19 @@ def printDetails(title, comments, predictions, model, features):
             neutralCount += 1
 
         print('\n')
-        print(comments[i], predictions[i])
+        print(comments[i], predictions[i])                      # print each comment followed by a predicted stance
 
     print('\n')
-    print(model)
-    printOptions(features)
+    print(model)                                                # print model name
+    printOptions(features)                                      # print the features used
     print('\n')
-    print("FAVOUR: " + str(favorCount))
+    print("FAVOUR: " + str(favorCount))                         # print the distribution of songs in each class
     print("NEUTRAL: " + str(neutralCount))
     print("AGAINST: " + str(againstCount))
 
-def runClassifiers(modelChoice):
+def runClassifiers(modelChoice):                                # Go through each combination of features and print out the results.
 
-    title, comments = generateSub()
+    title, comments = generateSub()                             # Get the submission's title and comments
     model = loadGodin()
 
     vectorizer = TfidfVectorizer()
@@ -55,30 +59,30 @@ def runClassifiers(modelChoice):
                      [True, True, False, False],
                      [True, True, True, False])
 
-    for features in listOfFeatures:
+    for features in listOfFeatures:                                         # for each combinations of features, train and test models
         trainData, trainStances = processData("trainingdata-all-annotations.txt", features)
         redditData = processRedditComments(comments, features)
             #divide this data by breakFileIntoStrings
 
-        if features[3] == True:
-            X_train =prepareW2V(model, breakFileIntoStrings('trainingdata-all-annotations.txt')) #godin model takes strings
+        if features[3] == True:                                             # if embeddings used, prepare w2v model instead
+            X_train =prepareW2V(model, breakFileIntoStrings('trainingdata-all-annotations.txt')) 
             X_test = prepareW2V(model, redditData)
 
-        else:
+        else:                                                               # otherwise do not
             X_train = vectorizer.fit_transform(trainData)
             X_test = vectorizer.transform(redditData)
 
-        if modelChoice == '1':
+        if modelChoice == '1':                                              # if naive bayes then train naive bayes and print details
             predictions = runBayes(X_train, trainStances, X_test)  # train the classifiers and the test with data
             printDetails(title, comments, predictions, "NAIVE BAYES", features)
             input()
 
-        elif modelChoice == '2':
+        elif modelChoice == '2':                                            # if log reg then train log reg and print details
             predictions = runLogReg(X_train, trainStances, X_test)
             printDetails(title, comments, predictions, "LOGISTIC REGRESSION", features)
             input()
 
-        elif modelChoice == '3':
+        elif modelChoice == '3':                                            # if svm then train svm and print details
             predictions = runSVM(X_train, trainStances, X_test)
             printDetails(title, comments, predictions, "SUPPORT VECTOR MACHINE", features)
             input()
