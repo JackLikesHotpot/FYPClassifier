@@ -20,7 +20,8 @@ def main():
         f = open('word2vec_twitter_tokens.txt')
         f.close()
     except FileNotFoundError:
-        print("Pre-loading w2v model! Will take 15-20 mins...")
+        print("Pre-loading w2v model! Can take 15 minutes to 1 hour.")
+        print("Press Enter to continue when a txt file of 14GB file with the same name 
         model = KeyedVectors.load_word2vec_format('word2vec_twitter_tokens.bin', binary=True, unicode_errors='ignore')
         model.save_word2vec_format('word2vec_twitter_tokens.txt', binary=False)
 
