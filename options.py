@@ -2,34 +2,34 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
 
-def removeStopWords(tweet):
+def removeStopWords(tweet):                                     # remove commonly occurring english words 
     result = []
     stopWords = set(stopwords.words('english'))
-    for word in tweet.split(' '):
-        if word not in stopWords:
-            result.append(word)
+    for word in tweet.split(' '):                               # divide each word in a sentence and remove stopwords
+        if word not in stopWords:  
+            result.append(word)                                 # put remaining words together
     return (' '.join(result))
 
 
-def lemmatizeTweet(tweet):
+def lemmatizeTweet(tweet):                                      # lemmatize - reduce words to their base form
     result = []
     lemmatizer = WordNetLemmatizer()
-    for word in tweet.split(' '):
+    for word in tweet.split(' '):                               # split and put them together
         result.append(lemmatizer.lemmatize(word.lower()))
     return (' '.join(result))
 
 
-def removeNoise(tweet):
+def removeNoise(tweet):                                         # remove twitter noise
     noise = ["RT", "#", "@", "rt"]
     newTweet = []
 
-    for i in tweet.split(' '):
+    for i in tweet.split(' '):                                  # divide words and check for noise; add to list
         if noise[0] != i and noise[1] not in i and noise[2] not in i and noise[3] not in i:
             newTweet.append(i)
     return (' '.join(newTweet))
 
 
-def printOptions(features):
+def printOptions(features):                                         # print features based on what is true in the array
     output = []
     if features[0] == True:
         output.append('Stopwords removed')
@@ -41,23 +41,23 @@ def printOptions(features):
         output.append('Using word embeddings')
 
     if output != []:
-        outputString = ', '.join(output)
+        outputString = ', '.join(output)                            # join feature strings together into a string 
     else:
-        outputString = 'None'
+        outputString = 'None'                                       # otherwise display none
     print("Features used: " + outputString)
 
 
 def processData(file, options):
     tData = []
-    tStances = []
+    tStances = []                                                   # arrays for training
 
     with open(file) as f:
         for line in f:
             if line.split('\t')[2] != 'Tweet':
-                tStances.append(line.split('\t')[3])
+                tStances.append(line.split('\t')[3])                # add training data
                 tData.append(line.split('\t')[2])
 
-        for i in range(len(tData)):
+        for i in range(len(tData)):                                 # remove features accordingly
             if options[0]:
                 tData[i] = removeStopWords(tData[i])
 
@@ -70,10 +70,10 @@ def processData(file, options):
     return tData, tStances
 
 
-def processRedditComments(comments, options):
+def processRedditComments(comments, options):                           # remove the same features for reddit data
     redditData = []
     for i in comments:
-        redditData.append(i)
+        redditData.append(i)                                            # add comments to redditData 
 
     for i in range(len(redditData)):
         if options[0]:
