@@ -8,13 +8,13 @@ import sklearn.metrics as metrics
 from options import printOptions
 
 
-def runBayes(X_train, trainStances, X_test):
+def runBayes(X_train, trainStances, X_test):                        # get bayes model, train, test
     model = MultinomialNB()
     model.fit(X_train, trainStances)
     return model.predict(X_test)
 
 
-def evalBayes(predictions, testStances, features):
+def evalBayes(predictions, testStances, features):                  # evaluate model with f1 scores
     print("Naive Bayes Model")
     printOptions(features)
     print("Micro F1-Score: ", metrics.f1_score(testStances, predictions, average='micro'))
@@ -24,13 +24,13 @@ def evalBayes(predictions, testStances, features):
 
 # LOGISTIC REGRESSION MODEL
 
-def runLogReg(X_train, trainStances, X_test):
+def runLogReg(X_train, trainStances, X_test):                       # get logreg, train, test
     model = LogisticRegression(solver='lbfgs', multi_class='auto')
     model.fit(X_train, trainStances)
     return model.predict(X_test)
 
 
-def evalLogReg(predictions, testStances, features):
+def evalLogReg(predictions, testStances, features):                 # evaluation
     print("Logistic Regression Model")
     printOptions(features)
     print("Micro F1-score: ", metrics.f1_score(testStances, predictions, average='micro'))
@@ -41,13 +41,13 @@ def evalLogReg(predictions, testStances, features):
 
 # SUPPORT VECTOR MACHINE MODEL
 
-def runSVM(X_train, trainStances, X_test):
+def runSVM(X_train, trainStances, X_test):                          # get svm, train, test
     model = SVC(kernel='rbf', C=1, gamma=1)
     model.fit(X_train, trainStances)
     return model.predict(X_test)
 
 
-def evalSVM(predictions, testStances, features):
+def evalSVM(predictions, testStances, features):                    # evaluation
     print("Support Vector Machine")
     printOptions(features)
     print("Micro F1-score: ", metrics.f1_score(testStances, predictions, average='micro'))
